@@ -1,5 +1,6 @@
 const tmi = require('tmi.js');
-
+const axios = require('axios')
+const cheerio = require('cheerio')
 // Define configuration options
 const opts = {
   identity: {
@@ -45,7 +46,11 @@ function onMessageHandler (target, context, msg, self) {
 }
 
 function httpCon () {
+    axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
   
+    
+    console.log(response.data);
+    })
 }
                            
 function checkRating () {
