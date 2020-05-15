@@ -37,12 +37,24 @@ function onMessageHandler (target, context, msg, self) {
   if( commandName.startsWith('!rating')){
     client.say(target, `Rating for ${commandName}'`);
     console.log(`* Executed command`);
+    httpCon();
   }
   else {
     console.log(`* Unknown command ${commandName}`);
   }
 }
 
+function httpCon () {
+  var http = require('http');
+
+var options = {
+    host: 'chess.com'
+}
+var request = http.request(options, function (res) {
+    
+request.end();
+}
+                           
 function checkRating () {
   
 }
