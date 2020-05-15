@@ -34,14 +34,18 @@ function onMessageHandler (target, context, msg, self) {
     client.say(target, `You rolled a ${num}`);
     console.log(`* Executed ${commandName} command`);
   } 
-  if( commandName === ''){
-    
+  if( commandName.startsWith('!rating')){
+    client.say(target, `Rating for ${commandName}'`);
+    console.log(`* Executed command`);
   }
   else {
     console.log(`* Unknown command ${commandName}`);
   }
 }
 
+function checkRating () {
+  
+}
 // Function called when the "dice" command is issued
 function rollDice () {
   const sides = 20;
