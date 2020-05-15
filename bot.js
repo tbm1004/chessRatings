@@ -47,11 +47,20 @@ function ranking (target, commandName) {
     var myArray = myRe.exec(spl[1]);
     var curRank = myArray[0];
     
-    console.log(curRank);
+    var newRe = new RegExp('win":[0-9]*', 'g');
+    var newArray = newRe.exec(spl[1]);
+    console.log(newArray[0]);
+    console.log(.split(new RegExp1('[0-9][0-9][0-9][0-9]?')));
     client.say(target, `Rating for ${commandName} is ${curRank}`);
     })
 }
-                                                                    
+
+class RegExp1 extends RegExp {
+  [Symbol.split](str, limit) {
+    const result = RegExp.prototype[Symbol.split].call(this, str, limit);
+    return result.map(x => `(${x})`);
+  }
+}
 
                                                                   
                            
