@@ -48,8 +48,10 @@ function onMessageHandler (target, context, msg, self) {
 function httpCon () {
     axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
     //console.log(response.data);
-    var x = transformresponse.data;
-    console.log(x);
+    
+    var config = JSON.parse('{"filter":"/d"}');
+    var result = response.data.match(new RegExp(config.filter));
+    console.log(result);
     })
 }
                                                                     
