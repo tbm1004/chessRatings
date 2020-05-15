@@ -43,16 +43,22 @@ function ranking (target, commandName) {
     axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
     var x = JSON.stringify(response.data);
     var spl = x.split("chess_blitz");
+      
+    //regex for rating
     var myRe = new RegExp('[0-9][0-9][0-9][0-9]?', 'g');
     var myArray = myRe.exec(spl[1]);
     var curRank = myArray[0];
     
-    
+    //regex for wins
     var newRe = new RegExp('[0-9]*', 'g');    
     var wins = (spl[1].split(new RegExp('win":')));
     var newArr = newRe.exec(wins[1]);
-    console.log(newArr[0]);
-    client.say(target, `Chess.com Stats for for ${commandName}: Rating: ${curRank}`);
+    var win = newArr[0];
+
+    var statRe = new RegExp('record":{.*\d', 'g');
+    var statArray = statRe.exec(spl[1]);
+    console.log(statArray[0]);
+    client.say(target, `Stats for user ${commandName}: Rating: ${curRank}, Wins: ${win}`);
     })
 }
 
