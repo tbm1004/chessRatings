@@ -47,11 +47,13 @@ function onMessageHandler (target, context, msg, self) {
 
 function httpCon () {
     axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
-  
+    //console.log(response.data);
     
-    console.log(response.data);
     })
 }
+                                                                    
+
+                                                                  
                            
 function checkRating () {
   
