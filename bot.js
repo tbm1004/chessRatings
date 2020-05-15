@@ -45,14 +45,7 @@ function onMessageHandler (target, context, msg, self) {
 }
 
 function httpCon () {
-  var http = require('http');
-
-var options = {
-    host: 'chess.com'
-}
-var request = http.request(options, function (res) {
-    
-request.end();
+  
 }
                            
 function checkRating () {
