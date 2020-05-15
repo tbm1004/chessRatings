@@ -30,23 +30,24 @@ function onMessageHandler (target, context, msg, self) {
   const commandName = msg.trim();
 
   if( commandName.startsWith('!rating')){
-    client.say(target, `Rating for ${commandName}'`);
+    ranking(target, commandName)
     console.log(`* Executed command`);
-    httpCon();
+    
   }
   else {
     console.log(`* Unknown command ${commandName}`);
   }
 }
 
-function httpCon () {
+function ranking (target, commandName) {
     axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
     var x = JSON.stringify(response.data);
     var spl = x.split("chess_blitz");
-    //console.log(spl[1]);
-    var myRe = new RegExp('d(b+)d', 'g');
-    var myArray = myRe.exec('cdbbdbsbz');
-    console.log(myArray);
+    var myRe = new RegExp('[0-9][0-9][0-9][0-9]?', 'g');
+    var myArray = myRe.exec(spl[1]);
+    var curRank = myArray[0];
+    console.log(curRank);
+    client.say(target, `Rating for ${commandName} is ${curRank}`);
     })
 }
                                                                     
