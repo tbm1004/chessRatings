@@ -29,12 +29,6 @@ function onMessageHandler (target, context, msg, self) {
   // Remove whitespace from chat message
   const commandName = msg.trim();
 
-  // If the command is known, let's execute it
-  if (commandName === '!d20') {
-    const num = rollDice(commandName);
-    client.say(target, `You rolled a ${num}`);
-    console.log(`* Executed ${commandName} command`);
-  } 
   if( commandName.startsWith('!rating')){
     client.say(target, `Rating for ${commandName}'`);
     console.log(`* Executed command`);
@@ -47,11 +41,13 @@ function onMessageHandler (target, context, msg, self) {
 
 function httpCon () {
     axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
-    //console.log(response.data);
     
-    var config = JSON.parse('{"filter":"/d"}');
-    var result = response.data.match(new RegExp(config.filter));
-    console.log(result);
+    console.log(response.data);
+    var x = JSON.parse(response.data);
+    //var out = "aaa6005adkfjahds598508 5444"
+    //var config = JSON.parse('{"filter":"/d"}');
+    //var result = obj.match(new RegExp(config.filter));
+    //console.log(result);
     })
 }
                                                                     
