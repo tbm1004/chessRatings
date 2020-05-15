@@ -38,13 +38,13 @@ function onMessageHandler(target, context, msg, self) {
 }
 
 function ranking(target, commandName) {
-  try{
-    axios.get("https://api.chess.com/pub/player/hikaru54/stats")
+    axios.get("https://api.chess.com/pub/player/hikaruxz/stats").catch(function (error) {
+    if (error.response) { console.log("AAAA") }}
       .then(response => {
         var x = JSON.stringify(response.data);
         
         var spl = x.split("chess_blitz");
-
+        
         //regex for rating
         var myRe = new RegExp("[0-9][0-9][0-9][0-9]?", "g");
         var myArray = myRe.exec(spl[1]);
@@ -64,12 +64,10 @@ function ranking(target, commandName) {
           target,
           `Blitz stats for ${commandName}: Rating: ${curRank}, ${str}`
         );
-      });
-  }
-  catch(e){
-    
-  }
-}
+    })
+
+})
+                                                                       
 
 class RegExp1 extends RegExp {
   [Symbol.split](str, limit) {
