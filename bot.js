@@ -48,20 +48,20 @@ function ranking (target, commandName) {
     var myRe = new RegExp('[0-9][0-9][0-9][0-9]?', 'g');
     var myArray = myRe.exec(spl[1]);
     var curRank = myArray[0];
-    
-    //regex for wins
-    var newRe = new RegExp('[0-9]*', 'g');    
-    var wins = (spl[1].split(new RegExp('win":')));
-    var newArr = newRe.exec(wins[1]);
-    var win = newArr[0];
 
+    //regex and formatting for wins/losses/ties
     var statRe = new RegExp('"win".+?(?=}})', 'g');
     var statArray = statRe.exec(spl[1]);
     var g = statArray[0].replace('"', "");
     var find = '"';
+    var repl = ','
     var re = new RegExp(find, 'g');
-    var str = str.replace()
-    client.say(target, `Stats for user ${commandName}: Rating: ${curRank}, Wins: ${win}`);
+    var str = g.replace(re, '');
+    re = new RegExp(repl, 'g');
+    str = str.replace(re, ', ');
+    
+    
+    client.say(target, `Stats for user ${commandName}: Rating: ${curRank}, ${str}`);
     })
 }
 
