@@ -55,9 +55,12 @@ function ranking (target, commandName) {
     var newArr = newRe.exec(wins[1]);
     var win = newArr[0];
 
-    var statRe = new RegExp('record":{.*\d', 'g');
+    var statRe = new RegExp('"win".+?(?=}})', 'g');
     var statArray = statRe.exec(spl[1]);
-    console.log(statArray[0]);
+    var g = statArray[0].replace('"', "");
+    var find = '"';
+    var re = new RegExp(find, 'g');
+    var str = str.replace()
     client.say(target, `Stats for user ${commandName}: Rating: ${curRank}, Wins: ${win}`);
     })
 }
