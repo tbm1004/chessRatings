@@ -26,11 +26,11 @@ client.connect();
 function onMessageHandler (target, context, msg, self) {
   if (self) { return; } // Ignore messages from the bot
 
-  // Remove whitespace from chat message
-  const commandName = msg.trim();
+  var commandName = msg;
 
   if( commandName.startsWith('!rating')){
-    ranking(target, commandName)
+    commandName = commandName.split(" ");
+    ranking(target, commandName[1])
     console.log(`* Executed command`);
     
   }
@@ -46,6 +46,7 @@ function ranking (target, commandName) {
     var myRe = new RegExp('[0-9][0-9][0-9][0-9]?', 'g');
     var myArray = myRe.exec(spl[1]);
     var curRank = myArray[0];
+    
     console.log(curRank);
     client.say(target, `Rating for ${commandName} is ${curRank}`);
     })
