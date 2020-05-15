@@ -47,11 +47,12 @@ function ranking (target, commandName) {
     var myArray = myRe.exec(spl[1]);
     var curRank = myArray[0];
     
-    var newRe = new RegExp('win":[0-9]*', 'g');
-    var newArray = newRe.exec(spl[1]);
-    console.log(newArray[0]);
-    console.log(.split(new RegExp1('[0-9][0-9][0-9][0-9]?')));
-    client.say(target, `Rating for ${commandName} is ${curRank}`);
+    
+    var newRe = new RegExp('[0-9]*', 'g');    
+    var wins = (spl[1].split(new RegExp('win":')));
+    var newArr = newRe.exec(wins[1]);
+    console.log(newArr[0]);
+    client.say(target, `Chess.com Stats for for ${commandName}: Rating: ${curRank}`);
     })
 }
 
@@ -63,15 +64,6 @@ class RegExp1 extends RegExp {
 }
 
                                                                   
-                           
-function checkRating () {
-  
-}
-// Function called when the "dice" command is issued
-function rollDice () {
-  const sides = 20;
-  return Math.floor(Math.random() * sides) + 1;
-}
 
 // Called every time the bot connects to Twitch chat
 function onConnectedHandler (addr, port) {
