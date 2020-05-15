@@ -41,10 +41,12 @@ function onMessageHandler (target, context, msg, self) {
 
 function httpCon () {
     axios.get('https://api.chess.com/pub/player/hikaru/stats').then((response) => {
-  
-    var config = JSON.parse('{"filter":"/d"}');
-    var result = response.get.match(new RegExp(config.filter));
-    console.log(result);
+    var x = JSON.stringify(response.data);
+    var spl = x.split("chess_blitz");
+    //console.log(spl[1]);
+    var myRe = new RegExp('d(b+)d', 'g');
+    var myArray = myRe.exec('cdbbdbsbz');
+    console.log(myArray);
     })
 }
                                                                     
