@@ -1,6 +1,5 @@
 const tmi = require("tmi.js");
 const axios = require("axios");
-const cheerio = require("cheerio");
 // Define configuration options
 const opts = {
   identity: {
@@ -28,7 +27,7 @@ function onMessageHandler(target, context, msg, self) {
 
   var commandName = msg;
 
-  if (commandName.startsWith("!rating")) {
+  if (commandName.startsWith("!stats")) {
     commandName = commandName.split(" ");
     ranking(target, commandName[1]);
     console.log(`* Executed command`);
@@ -62,16 +61,20 @@ function ranking(target, commandName) {
         //regex and formatting for wins/losses/ties
         var statRe = new RegExp('"win".+?(?=}})', "g");
         var statArray = statRe.exec(spl[1]);
-        var g = statArray[0].replace('"', "");
+        var g = statArray[0];
         var find = '"';
         var repl = ",";
         var re = new RegExp(find, "g");
         var str = g.replace(re, "");
         re = new RegExp(repl, "g");
         str = str.replace(re, ", ");
+        
+        var newTar = target.replace(/#/g, "@");
+        console.log(newTar);
+        var out = `${newTar} Blitz stats for ${commandName}: rating: ${curRank}, ${str}`
         client.say(
           target,
-          `Blitz stats for ${commandName}: Rating: ${curRank}, ${str}`
+          out
         );
       }
     });
