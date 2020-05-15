@@ -53,11 +53,17 @@ function ranking(target, commandName) {
 
         var spl = x.split("chess_blitz");
 
-        //regex for rating
+        //regex for current rating
         var myRe = new RegExp("[0-9][0-9][0-9][0-9]?", "g");
         var myArray = myRe.exec(spl[1]);
         var curRank = myArray[0];
-
+        
+        //regex for best rating
+        var myRe = new RegExp('best":{"rating":[0-9]*', "g");
+        var myArray = myRe.exec(spl[1]);
+        var curRank = myArray[0].split(":");
+        
+        
         //regex and formatting for wins/losses/ties
         var statRe = new RegExp('"win".+?(?=}})', "g");
         var statArray = statRe.exec(spl[1]);
